@@ -28,6 +28,6 @@ If you no longer need the machine::
     $ ./deletevm mymachine
 
 (The latter can throw up error messages, but does work.  Please
-tell me if you have any good fixes for this.
+tell me if you have any good fixes for this.)
 
 
