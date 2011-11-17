@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]
+then
+    echo "Missing name argument"
+    exit 1
+fi
+name="$1"
+
+drives="$HOME/VirtualBox VMs"
+isos="$HOME/iso/"
+iso="$isos/ubuntu-11.10-server-i386.iso"
+
+VBoxManage createvm --name "$name" --register
+
+hddpath="$drives/$name/$name.vdi"
+VBoxManage createhd --size "3900" --filename "$hddpath"
+VBoxManage storagectl "$name" --name "IDE Controller" --add ide
+VBoxManage storageattach "$name" --storagectl "IDE Controller" \
+                    --port 0 --device 1 --type hdd --medium "$hddpath"
+
+VBoxManage modifyvm "$name" --memory "256"
+VBoxManage modifyvm "$name" --nic1 "bridged"
+VBoxManage modifyvm "$name" --bridgeadapter1 "eth0"
+
+VBoxManage storageattach "$name" --storagectl "IDE Controller" \
+                    --port 0 --device 0 --type dvddrive --medium "$iso"
+
+

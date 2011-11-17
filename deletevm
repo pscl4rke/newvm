@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]
+then
+    echo "Missing name argument"
+    exit 1
+fi
+name="$1"
+
+drives="$HOME/VirtualBox VMs"
+
+VBoxManage closemedium disk "$drives/$name/$name.vdi"
+VBoxManage unregistervm "$name" --delete
+rm -r "$drives/$name"
+
