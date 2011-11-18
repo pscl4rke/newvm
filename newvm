@@ -7,7 +7,10 @@ then
 fi
 name="$1"
 
-drives="$HOME/VirtualBox VMs"
+# Get machine folder from virtualbox system properties list
+drives=$(VBoxManage list systemproperties \
+    | grep -i 'Default machine folder' \
+    | sed -e 's/^[^:]*:\s\+//;')
 isos="$HOME/iso/"
 iso="$isos/ubuntu-11.10-server-i386.iso"
 
