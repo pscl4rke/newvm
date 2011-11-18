@@ -10,9 +10,16 @@ using VirtualBox without a GUI.
 Basic Usage:
 ------------
 
-Create a machine and set it running on your server::
+Create a machine::
 
     $ ./newvm mymachine
+
+Optionally you can specify ISO image, e.g.::
+
+    $ ./newvm mymachine ~/iso/Windows_XP.iso
+
+Then set newly created machine running on your server::
+
     $ VBoxHeadless --startvm mymachine
 
 Then locally hook up to it over RDP.  Defaults to port 3389.
