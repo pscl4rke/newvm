@@ -27,9 +27,12 @@ This does require your copy of the server to have the VRDE extension
 enabled.
 
 Out-of-band access is usually only required for setup.
-Then you can stop using ``VBoxHeadless`` and switch over to
-something like ``VBoxManage startvm`` instead.
+When you get to the point where you have working SSH (or
+equivalent) you can launch the machine using::
 
+    $ VBoxManage startvm mymachine --type headless
+
+This command returns as soon as the machine is up and running.
 If you no longer need the machine::
 
     $ ./deletevm mymachine
