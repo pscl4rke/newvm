@@ -7,7 +7,10 @@ then
 fi
 name="$1"
 
-drives="$HOME/VirtualBox VMs"
+# Get machine folder from virtualbox system properties list
+drives=$(VBoxManage list systemproperties \
+    | grep -i 'Default machine folder' \
+    | sed -e 's/^[^:]*:\s\+//;')
 
 VBoxManage closemedium disk "$drives/$name/$name.vdi"
 VBoxManage unregistervm "$name" --delete
