@@ -26,6 +26,11 @@ Then locally hook up to it over RDP.  Defaults to port 3389.
 This does require your copy of the server to have the VRDE extension
 enabled.
 
+Note that many installation discs will stop the machine from
+booting normally, so you will probably need::
+
+    $ ./setdvd mymachine none
+
 Out-of-band access is usually only required for setup.
 When you get to the point where you have working SSH (or
 equivalent) you can launch the machine using::

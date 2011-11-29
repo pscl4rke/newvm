@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# NOTE: If the ISO path is 'none' then VirtualBox will
+#   interpret that as leaving the drive empty.
+
+if [ -z "$1" ]
+then
+    echo "Missing name argument"
+    exit 1
+fi
+name="$1"
+
+if [ -z "$2" ]
+then
+    echo "Missing the path to iso"
+    exit 1
+fi
+iso="$2"
+
+VBoxManage storageattach "$name" --storagectl "IDE Controller" \
+                    --port 0 --device 0 --type dvddrive --medium "$iso"
+
+
